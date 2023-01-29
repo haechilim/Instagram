@@ -1,0 +1,22 @@
+.mainMenuContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 220px;
+    height: 100%;
+    background-color: black;
+    border-right: 1px solid rgb(38, 38, 38);
+    padding: 8px 12px 0px 12px;
+}
+
+.mainMenuContainer .menuList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+
+.mainMenuContainer .hamburgerMenuContainer {
+    margin-bottom: 28px;
+}

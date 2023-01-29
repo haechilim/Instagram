@@ -1,0 +1,42 @@
+.mainMenuItem .selected {
+    border-color: rgb(250, 250, 250);
+}
+
+.largeAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    border-radius: 100%;
+}
+
+.checkedBorder {
+    border: 1px solid #363636;
+}
+
+.uncheckedBorder {
+    border: 1px solid transparent;
+    background-image: linear-gradient(#000, #000), 
+    linear-gradient(to right, #ffa301 0%,  #df00ad 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-sizing: content-box;
+}
+
+.profileContainer .checkedBorder {
+    margin: -2px;
+}
+
+.profileContainer .uncheckedBorder {
+    margin: -4px;
+}
+
+.storyListItem .checkedText {
+    margin-top: 6px;
+    color: rgb(168, 168, 168);
+}
+
+.storyListItem .uncheckedText {
+    margin-top: 5px;
+    color: rgb(250, 250, 250);
+}

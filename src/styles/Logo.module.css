@@ -1,0 +1,14 @@
+.logoContainer {
+    display: flex;
+    justify-content: flex-start;
+    padding: 25px 12px 16px 12px;
+    margin-bottom: 19px;
+    height: 32px;
+}
+
+.logoContainer .logo {
+    display: flex;
+    align-items: flex-end;
+    width: 196px;
+    height: 36px;
+}
