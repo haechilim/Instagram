@@ -4,13 +4,13 @@
   height: 100%;
 }
 
-.container .navigationContainer {
+.navigationContainer {
   display: flex;
   flex-direction: row;
   height: 100%;
 }
 
-.container .navigationContainer .workspaceContainer {
+.workspaceContainer {
   overflow-y: scroll;
   scrollbar-width: initial;
   display: flex;

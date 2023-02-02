@@ -1,7 +1,7 @@
 import { Component, ReactNode } from "react";
 
 interface Props {
-    selected: boolean
+    selected?: boolean
 }
 
 class AlarmIcon extends Component<Props> {

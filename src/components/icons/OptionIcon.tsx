@@ -1,10 +1,6 @@
 import { Component, ReactNode } from "react";
 
-interface Props {
-    seleced: boolean
-}
-
-class OptionIcon extends Component<Props> {
+class OptionIcon extends Component {
     render(): ReactNode {
         return (
             <svg color="#fafafa" fill="#fafafa" height="24" role="img" viewBox="0 0 24 24" width="24">

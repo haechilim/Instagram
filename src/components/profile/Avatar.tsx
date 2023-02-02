@@ -16,20 +16,20 @@ export enum AvatarSize {
     SIZE_56 = 56
 }
 
-interface Props {
-    size: AvatarSize,
-    id: string,
-    selected?: boolean,
-    story?: boolean,
-    onMouseOver?: () => void,
-    onMouseLeave?: () => void,
-}
-
 interface User {
     id: string,
     name: string,
     image: string,
     checked?: boolean
+}
+
+interface Props {
+    size: AvatarSize,
+    id: string,
+    selected?: boolean,
+    story?: boolean,
+    onMouseOver?: (e: React.MouseEvent<HTMLElement>) => void,
+    onMouseLeave?: (e: React.MouseEvent<HTMLElement>) => void,
 }
 
 class Avatar extends Component<Props> {

@@ -1,0 +1,10 @@
+.detailComments {
+    display: flex;
+    flex-direction: row;
+    color: rgb(168, 168, 168);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}

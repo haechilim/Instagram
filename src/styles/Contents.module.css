@@ -1,0 +1,75 @@
+.contentsContainer {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgb(38, 38, 38);
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: scale-down;
+}
+
+.horizontal {
+    width: 100%;
+}
+
+.vertical {
+    height: 94%;
+}
+
+.button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 100%;
+    background-size: 440px 411px;
+    background-image: url(/public/res/icons.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    position: absolute;
+    top: 278.5px;
+    cursor: pointer;
+}
+
+.prev {
+    background-position: -129px -97px;
+    left: 7px;
+}
+
+.next {
+    background-position: -160px -97px;
+    left: 432px;
+}
+
+.pageBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 565px;
+}
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.page {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    opacity: 40%;
+    border-radius: 100%;
+    margin-right: 4px;
+}
+
+.current {
+    opacity: 100%;
+}
