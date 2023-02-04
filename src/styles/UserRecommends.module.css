@@ -1,0 +1,45 @@
+.recommendContainer {
+    padding-top: 51px;
+}
+
+.recommendTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0px 0px 0px;
+}
+
+.text {
+    color: rgb(168, 168, 168);
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 18px;
+    margin: 0px;
+}
+
+.showAll {
+    border: none;
+    background-color: inherit;
+    color: rgb(250, 250, 250);
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 16px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.showAll:hover {
+    color: #7d7d7d;
+}
+
+.recommendList {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 8px 0px;
+    /* border: 1px solid rgb(38, 38, 38);
+    border-radius: 4px; */
+}

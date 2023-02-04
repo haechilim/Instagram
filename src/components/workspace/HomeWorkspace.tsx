@@ -9,7 +9,7 @@ class HomeWorkspace extends Component {
         return (
             <div className={styles.homeWorkspaceContainer}>
                 <MainPosts/>
-                {/* <UserRecommends/> */}
+                <UserRecommends/>
                 {/* <Detail id={id}/> */}
             </div>
         );

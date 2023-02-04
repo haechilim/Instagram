@@ -56,7 +56,7 @@ class Profile extends Component<Props> {
                         {id}
                     </div>
                     {additionalInfo !== undefined &&
-                        <div className={styles.additionalInfo + (isMyId ? ` ${name}` : "")}>
+                        <div className={styles.additionalInfo + (isMyId ? ` ${styles.name}` : "")}>
                             {additionalInfo}
                         </div>
                     }

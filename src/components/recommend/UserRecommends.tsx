@@ -1,10 +1,15 @@
-import { Component } from "react";
-import RecommendItem from "./UserRecommendItem";
+import { Component } from "react"
+import RecommendItem from "@/components/recommend/UserRecommend"
+import styles from "@/styles/UserRecommends.module.css"
 
-class UserRecommend extends Component {
+interface User {
+    id: string,
+    name: string
+}
+
+class UserRecommends extends Component {
     render() {
-        const { handleIdState } = this.props;
-        this.users = [
+        const users: User[] = [
             {
                 id: "sketcherysk",
                 name: "김연서"
@@ -21,22 +26,21 @@ class UserRecommend extends Component {
 
         return (
             <div style={{ width: "319px" }}>
-                <div className="recommendContainer">
+                <div className={styles.recommendContainer}>
                     <RecommendItem
                         id="haechilim"
                         name="임준형"
                     />
-                    <div className="recommendTitle">
-                        <h4 className="text">회원님을 위한 추천</h4>
-                        <button className="showAll">모두 보기</button>
+                    <div className={styles.recommendTitle}>
+                        <h4 className={styles.text}>회원님을 위한 추천</h4>
+                        <button className={styles.showAll}>모두 보기</button>
                     </div>
-                    <div className="recommendList">
-                        {this.users.map((user, index) => (
+                    <div className={styles.recommendList}>
+                        {users.map((user: User, index: number) => (
                             <RecommendItem
                                 key={"recommendItem" + index}
                                 id={user.id}
                                 name={user.name}
-                                handleIdState={handleIdState}
                             />
                         ))}
                     </div>
@@ -46,4 +50,4 @@ class UserRecommend extends Component {
     }
 }
 
-export default UserRecommend;
+export default UserRecommends;
