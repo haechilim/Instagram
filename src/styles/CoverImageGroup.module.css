@@ -1,0 +1,15 @@
+.coverImageGroup {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.coverImages {
+    width: 293px;
+    display: flex;
+    flex-direction: column;
+}
+
+.marginRight {
+    margin-right: 28px;
+}
