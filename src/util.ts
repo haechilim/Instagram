@@ -6,7 +6,6 @@ class Util {
     }
 
     static timeToString(time: number): string {
-        console.log(time);
         const now: number = Date.now();
 
         const betweenTime = Math.floor((now - time) / 1000 / 60);

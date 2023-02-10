@@ -1,34 +1,41 @@
-import { Component } from "react";
+import { Component } from "react"
 import styles from "@/styles/Profile.module.css"
-import Avatar, { AvatarSize } from "@/components/profile/Avatar";
-import LargeAvatar from "@/components/profile/LargeAvatar";
+import Avatar, { AvatarSize } from "@/components/profile/Avatar"
+import LargeAvatar from "@/components/profile/LargeAvatar"
+import { ProfilePopUpState, changeDisplay, changePosition } from "@/modules/profilePopUp"
+import { changeUser } from "@/modules/profilePopUp"
+import { connect } from "react-redux"
 
 interface Props {
     id: string,
     idOnly: boolean,
-    additionalInfo?: string
+    additionalInfo?: string,
+    changeUser?: (id: string) => void,
+    changeDisplay?: (display: string) => void,
+    changePosition?: (top: string, left: string) => void,
 }
 
 class Profile extends Component<Props> {
     mouseOverTimeoutId: NodeJS.Timer | undefined = undefined;
     mouseLeaveTimeoutId: NodeJS.Timer | undefined = undefined;
-    detail: HTMLElement | null = null;
 
     onMouseOver = (e: React.MouseEvent<HTMLElement>): void => {
-        const { id } = this.props;
+        const { id, changeUser, changeDisplay, changePosition } = this.props;
 
         clearTimeout(this.mouseLeaveTimeoutId);
         this.mouseOverTimeoutId = setInterval(() => {
-            //handleIdState(id);
-            this.updateStyleMouseOver(e);
+            if(changeUser !== undefined) changeUser(id);
+            if(changeDisplay !== undefined && changePosition !== undefined) this.updateStyleMouseOver(e, changeDisplay, changePosition);
             clearTimeout(this.mouseOverTimeoutId);
         }, 500);
     };
 
     onMouseLeave = (e: React.MouseEvent<HTMLElement>): void => {
+        const { changeDisplay } = this.props;
+
         clearTimeout(this.mouseOverTimeoutId);
         this.mouseLeaveTimeoutId = setInterval(() => {
-            this.updateStyleMouseLeave(e);
+            if(changeDisplay !== undefined) changeDisplay("none");
             clearTimeout(this.mouseLeaveTimeoutId);
         }, 500);
     };
@@ -65,25 +72,30 @@ class Profile extends Component<Props> {
         );
     }
 
-    componentDidMount() {
-        this.detail = document.querySelector<HTMLElement>(".homeWorkspaceContainer .detailContainer");
-    }
-
-    updateStyleMouseOver(e: React.MouseEvent<HTMLElement>): void {
-        if(this.detail === null) return;
-
+    updateStyleMouseOver(e: React.MouseEvent<HTMLElement>, changeDisplay: (display: string) => void, changePosition: (top: string, left: string) => void): void {
         const element: HTMLElement = e.target as HTMLElement;
-
-        this.detail.style.display = "flex";
-        this.detail.style.top = (element.offsetHeight + element.offsetTop) + "px";
-        this.detail.style.left = element.offsetLeft + "px";
-    }
-
-    updateStyleMouseLeave(e: React.MouseEvent<HTMLElement>): void {
-        if(this.detail === null) return;
-
-        this.detail.style.display = "none";
+        const top: string = (element.offsetHeight + element.offsetTop) + "px";
+        const left: string = element.offsetLeft + "px";
+        
+        changeDisplay("flex");
+        changePosition(top, left);
     }
 }
 
-export default Profile;
+const mapStateToProps = (state: any): ProfilePopUpState => ({
+    profilePopUpId: state.profilePopUp.profilePopUpId,
+    display: state.profilePopUp.display,
+    top: state.profilePopUp.top,
+    left: state.profilePopUp.left
+});
+
+const mapDispatchToProps = (dispatch: any): any => ({
+    changeUser: (id: string) => dispatch(changeUser(id)),
+    changeDisplay: (display: string) => dispatch(changeDisplay(display)),
+    changePosition: (top: string, left: string) => dispatch(changePosition(top, left)),
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Profile);

@@ -1,0 +1,16 @@
+.button {
+    border: none;
+    color: black;
+    background-color: rgb(239, 239, 239);
+    border-radius: 8px;
+    text-align: center;
+    padding: 7px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+}
+
+.marginRight {
+    margin-right: 8px;
+}

@@ -1,5 +1,5 @@
 import { Component } from "react"
-import RecommendItem from "@/components/recommend/UserRecommend"
+import UserRecommend from "@/components/recommend/UserRecommend"
 import styles from "@/styles/UserRecommends.module.css"
 
 interface User {
@@ -27,7 +27,7 @@ class UserRecommends extends Component {
         return (
             <div style={{ width: "319px" }}>
                 <div className={styles.recommendContainer}>
-                    <RecommendItem
+                    <UserRecommend
                         id="haechilim"
                         name="임준형"
                     />
@@ -37,7 +37,7 @@ class UserRecommends extends Component {
                     </div>
                     <div className={styles.recommendList}>
                         {users.map((user: User, index: number) => (
-                            <RecommendItem
+                            <UserRecommend
                                 key={"recommendItem" + index}
                                 id={user.id}
                                 name={user.name}

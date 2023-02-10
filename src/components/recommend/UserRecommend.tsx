@@ -8,7 +8,7 @@ interface Props {
     name: string
 }
 
-class RecommendItem extends Component<Props> {
+class UserRecommend extends Component<Props> {
     render(): ReactNode {
         const { id, name } = this.props;
         const myId: string = "haechilim"; //임시 코드
@@ -29,4 +29,4 @@ class RecommendItem extends Component<Props> {
     }
 }
 
-export default RecommendItem;
+export default UserRecommend;
