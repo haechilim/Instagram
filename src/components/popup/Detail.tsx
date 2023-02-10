@@ -2,7 +2,7 @@ import Button from "@/components/buttons/Button";
 import CoverImage, { CoverImageSize } from "@/components/coverImage/CoverImage";
 import Activity from "@/components/profile/Activity";
 import Avatar, { AvatarSize } from "@/components/profile/Avatar";
-import { ProfilePopUpState, changeDisplay } from "@/modules/profilePopUp";
+import { ProfilePopupState, changeDisplay } from "@/modules/profilePopup";
 import styles from "@/styles/Detail.module.css";
 import { Component, ReactNode } from "react";
 import { connect } from "react-redux";
@@ -200,11 +200,11 @@ class Detail extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: any): ProfilePopUpState => ({
-    profilePopUpId: state.profilePopUp.profilePopUpId,
-    display: state.profilePopUp.display,
-    top: state.profilePopUp.top,
-    left: state.profilePopUp.left
+const mapStateToProps = (state: any): ProfilePopupState => ({
+    profilePopupId: state.profilePopup.profilePopupId,
+    display: state.profilePopup.display,
+    top: state.profilePopup.top,
+    left: state.profilePopup.left
 });
 
 const mapDispatchToProps = (dispatch: any): any => ({

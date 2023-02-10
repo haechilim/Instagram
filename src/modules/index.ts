@@ -1,9 +1,9 @@
 import { combineReducers } from "redux"
 import { configureStore } from "@reduxjs/toolkit"
-import profilePopUp from "@/modules/profilePopUp"
+import profilePopup from "@/modules/profilePopup"
 
 const rootReducers = combineReducers({
-    profilePopUp
+    profilePopup
 });
 
 const store = configureStore({

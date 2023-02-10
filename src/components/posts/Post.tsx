@@ -25,12 +25,15 @@ export type PostType = {
 
 interface Props {
     direction: PostDirection,
-    post: PostType
+    post?: PostType
 }
 
 class Post extends Component<Props> {
     render(): ReactNode {
         const { direction, post } = this.props;
+
+        if(post === undefined) return;
+
         const { id, time, images, likes, commentsCount, mainComment } = post;
         const { COLUMN, ROW } = PostDirection;
 

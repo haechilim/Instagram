@@ -2,8 +2,8 @@ import { Component } from "react"
 import styles from "@/styles/Profile.module.css"
 import Avatar, { AvatarSize } from "@/components/profile/Avatar"
 import LargeAvatar from "@/components/profile/LargeAvatar"
-import { ProfilePopUpState, changeDisplay, changePosition } from "@/modules/profilePopUp"
-import { changeUser } from "@/modules/profilePopUp"
+import { ProfilePopupState, changeDisplay, changePosition } from "@/modules/profilePopup"
+import { changeUser } from "@/modules/profilePopup"
 import { connect } from "react-redux"
 
 interface Props {
@@ -82,11 +82,11 @@ class Profile extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: any): ProfilePopUpState => ({
-    profilePopUpId: state.profilePopUp.profilePopUpId,
-    display: state.profilePopUp.display,
-    top: state.profilePopUp.top,
-    left: state.profilePopUp.left
+const mapStateToProps = (state: any): ProfilePopupState => ({
+    profilePopupId: state.profilePopup.profilePopupId,
+    display: state.profilePopup.display,
+    top: state.profilePopup.top,
+    left: state.profilePopup.left
 });
 
 const mapDispatchToProps = (dispatch: any): any => ({

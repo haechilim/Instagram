@@ -10,8 +10,8 @@ interface Action {
     left?: string
 }
 
-export interface ProfilePopUpState {
-    profilePopUpId: string | undefined,
+export interface ProfilePopupState {
+    profilePopupId: string | undefined,
     display: string | undefined,
     top: string | undefined,
     left: string | undefined
@@ -21,19 +21,19 @@ export const changeUser = (id: string): Action => ({ type: CHANGE_USER, id });
 export const changeDisplay = (display: string): Action => ({ type: CHANGE_DISPLAY, display });
 export const changePosition = (top: string, left: string): Action => ({ type: CHANGE_POSITION, top, left });
 
-const initState: ProfilePopUpState = {
-    profilePopUpId: undefined,
+const initState: ProfilePopupState = {
+    profilePopupId: undefined,
     display: undefined,
     top: undefined,
     left: undefined
 }
 
-function profilePopUp(state: ProfilePopUpState = initState, action: Action): ProfilePopUpState {
+function profilePopup(state: ProfilePopupState = initState, action: Action): ProfilePopupState {
     switch(action.type) {
         case CHANGE_USER:
             return {
                 ...state,
-                profilePopUpId: action.id
+                profilePopupId: action.id
             };
 
         case CHANGE_DISPLAY:
@@ -54,4 +54,4 @@ function profilePopUp(state: ProfilePopUpState = initState, action: Action): Pro
     }
 }
 
-export default profilePopUp;
+export default profilePopup;
