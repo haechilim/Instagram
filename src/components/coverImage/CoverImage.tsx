@@ -2,8 +2,14 @@ import { Component, ReactNode } from "react"
 import Image from "next/image"
 import styles from "@/styles/CoverImage.module.css"
 
+export enum CoverImageSize {
+    BIG,
+    NORMAL,
+    SMALL
+}
+
 interface Props {
-    type?: string,
+    type: CoverImageSize,
     image: string
     right?: boolean,
 }
@@ -11,43 +17,22 @@ interface Props {
 class CoverImage extends Component<Props> {
     render(): ReactNode {
         const { type, right, image } = this.props;
+        const imageJSX: JSX.Element = <Image 
+            alt=""
+            src={"/res/explore/" + image + ".jpg"}
+            fill
+            objectFit="cover"
+        />
 
         switch(type) {
-            case "big":
-                return (
-                    <div className={`${styles.bigImage} ${right || styles.marginRight}`}>
-                        <Image 
-                            alt=""
-                            src={"/res/explore/" + image + ".jpg"}
-                            fill
-                            objectFit="cover"
-                        />
-                    </div>
-                )
-            
-            case "small":
-                return (
-                    <div className={styles.smallImage}>
-                        <Image 
-                            alt=""
-                            src={"/res/explore/" + image + ".jpg"}
-                            fill
-                            objectFit="cover"
-                        />
-                    </div>
-                )
+            case CoverImageSize.BIG:
+                return <div className={`${styles.bigImage} ${right || styles.marginRight}`}>{imageJSX}</div>
 
-            default:
-                return (
-                    <div className={styles.coverImage}>
-                        <Image 
-                            alt="" 
-                            src={"/res/explore/" + image + ".jpg"}
-                            fill
-                            objectFit="cover"
-                        />
-                    </div>
-                )
+            case CoverImageSize.NORMAL:
+                return <div className={styles.coverImage}>{imageJSX}</div>
+            
+            case CoverImageSize.SMALL:
+                return <div className={styles.smallImage}>{imageJSX}</div>
         }
     }
 }

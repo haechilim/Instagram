@@ -1,5 +1,5 @@
 import Button from "@/components/buttons/Button";
-import CoverImage from "@/components/coverImage/CoverImage";
+import CoverImage, { CoverImageSize } from "@/components/coverImage/CoverImage";
 import Activity from "@/components/profile/Activity";
 import Avatar, { AvatarSize } from "@/components/profile/Avatar";
 import { ProfilePopUpState, changeDisplay } from "@/modules/profilePopUp";
@@ -124,6 +124,8 @@ class Detail extends Component<Props> {
     }
 
     onMouseLeave = (): void => {
+        const { changeDisplay } = this.props;
+        
         clearTimeout(this.mouseOverTimeoutId);
         this.mouseLeaveTimeoutId = setInterval(() => {
             if(changeDisplay !== undefined) changeDisplay("none");
@@ -152,7 +154,8 @@ class Detail extends Component<Props> {
         const style = (display !== undefined && top !== undefined && left !== undefined) ? { display, top, left } : {};
 
         return (
-            <div id="detailContainer"
+            <div 
+                id="detailContainer"
                 className={styles.detailContainer}
                 onMouseOver={this.onMouseOver}
                 onMouseLeave={this.onMouseLeave} 
@@ -174,7 +177,7 @@ class Detail extends Component<Props> {
                 <div className={styles.images}>
                     {recentPosts.map((post, index) => (
                         <div key={"recentPost" + index} className={styles.image}>
-                            <CoverImage image={post} type="small"/>
+                            <CoverImage image={post} type={CoverImageSize.SMALL}/>
                             <div className={styles.mask}/>
                         </div>
                     ))}
