@@ -1,4 +1,6 @@
 import { Component, ReactNode } from "react"
+import { changePopupDisplay, changePopupPost, PostPopupState } from "@/modules/postPopup"
+import { connect } from "react-redux"
 import Comment from "@/components/comments/Comment"
 import MoreComments from "@/components/comments/MoreComments"
 import WriteComment from "@/components/comments/WriteComment"
@@ -6,8 +8,8 @@ import OptionIcon from "@/components/icons/OptionIcon"
 import ActionPanel from "@/components/panel/ActionPanel"
 import Profile from "@/components/profile/Profile"
 import styles from "@/styles/Post.module.css"
+import Contents from "@/components/posts/Contents"
 import Util from "@/util"
-import Contents from "./Contents"
 
 export enum PostDirection {
     COLUMN,
@@ -26,15 +28,21 @@ export type PostType = {
 interface Props {
     direction: PostDirection,
     post?: PostType
+    popupPost?: PostType,
+    changePopupPost?: (post: PostType) => void,
+    changePopupDisplay?: (display: string) => void
 }
 
 class Post extends Component<Props> {
     render(): ReactNode {
-        const { direction, post } = this.props;
+        const { direction, post, popupPost, changePopupPost, changePopupDisplay } = this.props;
+        let targetPost: PostType;
 
-        if(post === undefined) return;
+        if(post !== undefined) targetPost = post;
+        else if(popupPost !== undefined) targetPost = popupPost;
+        else return;
 
-        const { id, time, images, likes, commentsCount, mainComment } = post;
+        const { id, time, images, likes, commentsCount, mainComment } = targetPost;
         const { COLUMN, ROW } = PostDirection;
 
         switch(direction) {
@@ -59,7 +67,11 @@ class Post extends Component<Props> {
                         <div className={styles.bottomBar}>
                             <ActionPanel likes={likes}/>
                             <Comment id={id} comment={mainComment}/>
-                            <MoreComments commentsCount={commentsCount}/>
+                            <MoreComments 
+                                commentsCount={commentsCount}
+                                changePopupPost={() => changePopupPost !== undefined && changePopupPost(targetPost)}
+                                changePopupDisplay={() => changePopupDisplay !== undefined && changePopupDisplay("flex")}
+                            />
                             <WriteComment/>
                         </div>
                     </li>
@@ -67,7 +79,7 @@ class Post extends Component<Props> {
             
             case ROW:
                 return (
-                    <div className={styles.postContainer}>
+                    <div className={styles.postContainer} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.contentsContainer}>
                             <Contents direction={ROW} images={images}/>
                         </div>
@@ -88,4 +100,14 @@ class Post extends Component<Props> {
     }
 }
 
-export default Post;
+const mapStateToProps = (state: any): PostPopupState => (console.log(state), {
+    popupPost: state.postPopup.popupPost,
+    popupDisplay: state.postPopup.popupDisplay
+});
+
+const mapDispatchToProps = (dispatch: any): any => ({
+    changePopupPost: (post: PostType) => dispatch(changePopupPost(post)),
+    changePopupDisplay: (display: string) => dispatch(changePopupDisplay(display))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

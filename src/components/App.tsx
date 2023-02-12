@@ -1,7 +1,9 @@
+import { Component, ReactNode } from "react";
 import MainNevigation from "@/components/navigations/MainNavigation";
 import styles from "@/styles/App.module.css";
-import { Component, ReactNode } from "react";
-import Progress from "./Progress";
+import Progress from "@/components/Progress";
+import FullScreenPopup from "@/components/popup/FullScreenPopup";
+import Post, { PostDirection } from "@/components/posts/Post";
 
 interface Props {
     selectedIndex: number,
@@ -21,6 +23,9 @@ class App extends Component<Props> {
                         {children}
                     </div>
                 </div>
+                <FullScreenPopup>
+                    <Post direction={PostDirection.ROW}/>
+                </FullScreenPopup>
             </div>
         );
     }
