@@ -1,23 +1,28 @@
 import { Component, ReactNode } from "react"
+import { PostDirection } from "@/components/posts/Post"
 import styles from "@/styles/Contents.module.css"
-import { PostDirection } from "./Post"
-import Image from "next/image"
 
 interface Props {
     direction: PostDirection,
     images: string[]
 }
 
+interface Axis {
+    container: string,
+    contents: string
+}
+
 class Contents extends Component<Props> {
     render(): ReactNode {
         const { direction, images } = this.props; 
-        const axis: string = this.getAxis(direction);
+        const axis: Axis = this.getAxis(direction);
+        const { container, contents } = axis;
 
         return (
-            <div className={axis + ` ${styles.contentsContainer}`}>
+            <div className={container + ` ${styles.contentsContainer}`}>
                 <img
                     alt={images[0]}
-                    className={axis + ` ${styles.contents}`}
+                    className={contents + ` ${styles.contents}`}
                     src={"/res/contents/" + images[0] + ".jpeg"}
                 />
                 {/* <button className="prev"/>
@@ -38,13 +43,19 @@ class Contents extends Component<Props> {
         );
     }
 
-    getAxis(direction: PostDirection): string {
+    getAxis(direction: PostDirection): Axis {
         switch (direction) {
             case PostDirection.COLUMN:
-                return styles.horizontal;
+                return {
+                    container: styles.horizontalContainer,
+                    contents: styles.horizontalContents
+                };
 
             case PostDirection.ROW:
-                return styles.vertical;
+                return {
+                    container: styles.verticalContainer,
+                    contents: styles.verticalContents
+                };
         }
     }
 }

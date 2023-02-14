@@ -79,7 +79,7 @@ class Post extends Component<Props> {
             
             case ROW:
                 return (
-                    <div className={styles.postContainer} onClick={(e) => e.stopPropagation()}>
+                    <div className={styles.postContainer} onClick={e => e.stopPropagation()}>
                         <div className={styles.contentsContainer}>
                             <Contents direction={ROW} images={images}/>
                         </div>
