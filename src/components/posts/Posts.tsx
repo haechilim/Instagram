@@ -7,20 +7,32 @@ class Posts extends Component {
         //const { handleIdState, handlePostState } = this.props;
         const posts: PostType[] = [
             {
-                id: "yangazi025",
+                id: 0,
+                userId: "yangazi025",
                 time: 1674093599896,
                 images: [ "contents3" ],
                 likes: 2855,
                 commentsCount: 59,
-                mainComment: "오빠한테 선물받음🍅"
+                mainComment: {
+                    id: 100,
+                    userId: "yangazi025",
+                    content: "오빠한테 선물받음🍅",
+                    time: 1674093599896,
+                }
             },
             {
-                id: "winter.aespa",
+                id: 1,
+                userId: "winter.aespa",
                 time: 1674013599896,
                 images: [ "contents2" ],
                 likes: 27000,
                 commentsCount: 58,
-                mainComment: "[230118] 11:31AM KST: ⭐️"
+                mainComment: {
+                    id: 101,
+                    userId: "winter.aespa",
+                    content: "[230118] 11:31AM KST: ⭐️",
+                    time: 1674013599896,
+                }
             }
         ];
 

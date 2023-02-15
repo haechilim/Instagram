@@ -79,6 +79,8 @@
     width: 500px;
     height: 100%;
     background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .topBar {

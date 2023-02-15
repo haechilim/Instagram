@@ -3,19 +3,30 @@ import styles from "@/styles/Comment.module.css";
 import Profile from "@/components/profile/Profile";
 
 interface Props {
-    id: string,
-    comment: string
+    comment: CommentType,
+    idOnly: boolean
+}
+
+export type CommentType = {
+    id: number,
+    userId: string,
+    content: string,
+    time: number,
+    likes?: number,
+    commentsCount?: number
 }
 
 class Comment extends Component<Props> {
     render(): ReactNode {
-        const { id, comment } = this.props;
+        const { comment, idOnly } = this.props;
+        const { id, userId, content, time, likes, commentsCount } = comment;
+
         return (
             <div className={styles.commentContainer}>
                 <div className={styles.leftDiv}>
                     <div className={styles.selfComment}>
-                        <Profile idOnly={true} id={id}/>
-                        <div className={styles.comment}>{comment}</div>
+                        <Profile idOnly={idOnly} id={userId}/>
+                        <div className={styles.comment}>{content}</div>
                     </div>
                     <div>
                         

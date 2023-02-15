@@ -1,7 +1,7 @@
 import { Component, ReactNode } from "react"
 import { changePopupDisplay, changePopupPost, PostPopupState } from "@/modules/postPopup"
 import { connect } from "react-redux"
-import Comment from "@/components/comments/Comment"
+import Comment, { CommentType } from "@/components/comments/Comment"
 import MoreComments from "@/components/comments/MoreComments"
 import WriteComment from "@/components/comments/WriteComment"
 import OptionIcon from "@/components/icons/OptionIcon"
@@ -9,7 +9,9 @@ import ActionPanel from "@/components/panel/ActionPanel"
 import Profile from "@/components/profile/Profile"
 import styles from "@/styles/Post.module.css"
 import Contents from "@/components/posts/Contents"
-import Util from "@/util"
+import ReactionItemContainer from "@/components/container/ReactionItemContainer"
+import Time from "@/components/util/Time"
+import Comments from "@/components/comments/Comments"
 
 export enum PostDirection {
     COLUMN,
@@ -17,12 +19,13 @@ export enum PostDirection {
 }
 
 export type PostType = {
-    id: string,
+    id: number,
+    userId: string,
     time: number,
     images: string[],
     likes: number,
     commentsCount: number,
-    mainComment: string
+    mainComment: CommentType
 }
 
 interface Props {
@@ -42,7 +45,7 @@ class Post extends Component<Props> {
         else if(popupPost !== undefined) targetPost = popupPost;
         else return;
 
-        const { id, time, images, likes, commentsCount, mainComment } = targetPost;
+        const { id, userId, time, images, likes, commentsCount, mainComment } = targetPost;
         const { COLUMN, ROW } = PostDirection;
 
         switch(direction) {
@@ -50,10 +53,10 @@ class Post extends Component<Props> {
                 return (
                     <li className={styles.postItemContainer}>
                         <div className={styles.itemTopBar}>
-                            <Profile id={id} idOnly={false}/>
+                            <Profile id={userId} idOnly={false}/>
                             <div className={styles.time}>
                                 <div className={styles.dot}>•</div>
-                                <div>{Util.timeToString(time)}</div>
+                                <Time time={time}/>
                             </div>
                             <div className={styles.optionDiv}>
                                 <button className={styles.optionButton}>
@@ -66,7 +69,7 @@ class Post extends Component<Props> {
                         </div>
                         <div className={styles.bottomBar}>
                             <ActionPanel likes={likes}/>
-                            <Comment id={id} comment={mainComment}/>
+                            <Comment comment={mainComment} idOnly={true}/>
                             <MoreComments 
                                 commentsCount={commentsCount}
                                 changePopupPost={() => changePopupPost !== undefined && changePopupPost(targetPost)}
@@ -85,11 +88,18 @@ class Post extends Component<Props> {
                         </div>
                         <div className={styles.reactionContainer}>
                             <div className={styles.topBar}>
-                                <Profile id={id} idOnly={false}/>
+                                <Profile id={userId} idOnly={false}/>
                                 <button className={styles.optionButton}>
                                     <OptionIcon/>
                                 </button>
                             </div>
+                            <Comments postId={id}/>
+                            <ReactionItemContainer>
+                                <ActionPanel likes={likes} time={time}/>
+                            </ReactionItemContainer>
+                            <ReactionItemContainer>
+                                <WriteComment/>
+                            </ReactionItemContainer>
                         </div>
                     </div>
                 );
@@ -100,7 +110,7 @@ class Post extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: any): PostPopupState => (console.log(state), {
+const mapStateToProps = (state: any): PostPopupState => ({
     popupPost: state.postPopup.popupPost,
     popupDisplay: state.postPopup.popupDisplay
 });

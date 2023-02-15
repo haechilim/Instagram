@@ -5,14 +5,16 @@ import AlarmIcon from "@/components/icons/AlarmIcon";
 import BookmarkIcon from "@/components/icons/BookmarkIcon";
 import CommentIcon from "@/components/icons/CommentIcon";
 import MessageIcon from "@/components/icons/MessageIcon";
+import Time from "@/components/util/Time";
 
 interface Props {
-    likes: number
+    likes: number,
+    time?: number
 }
 
 class ActionPanel extends Component<Props> {
     render(): ReactNode {
-        const { likes } = this.props;
+        const { likes, time } = this.props;
 
         return (
             <div className={styles.actionPanelContainer}>
@@ -25,6 +27,7 @@ class ActionPanel extends Component<Props> {
                     <button className={`${styles.bookmark} ${styles.button}`}><BookmarkIcon/></button>
                 </div>
                 <div className={styles.likeCount}>좋아요&nbsp;<div>{Util.getCountToString(likes)}</div>개</div>
+                {time && <div className={styles.time}><Time time={time}/></div>}
             </div>
         );
     }
