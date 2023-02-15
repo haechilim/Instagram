@@ -6,9 +6,10 @@
     width: 100%;
     margin-top: 8px;
     margin-bottom: 5px;
+    width: 100%;
 }
 
-.leftDiv {
+.mainDiv {
     display: flex;
     flex-direction: column;
 }
@@ -24,4 +25,25 @@
 
 .comment {
     padding-left: 4px;
+}
+
+.commentInfoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: -6px;
+    margin-left: 45px;
+}
+
+.button {
+    color: rgb(168, 168, 168);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    cursor: pointer;
+    padding: 0px;
+    background-color: black;
+    border: none;
+    margin-right: 12px;
 }

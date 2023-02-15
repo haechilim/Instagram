@@ -1,6 +1,7 @@
 import { Component } from "react"
 import styles from "@/styles/Profile.module.css"
 import Avatar, { AvatarSize } from "@/components/profile/Avatar"
+import { CommentType } from "@/components/comments/Comment"
 import LargeAvatar from "@/components/profile/LargeAvatar"
 import { ProfilePopupState, changeDisplay, changePosition } from "@/modules/profilePopup"
 import { changeUser } from "@/modules/profilePopup"
@@ -10,6 +11,7 @@ interface Props {
     id: string,
     idOnly: boolean,
     additionalInfo?: string,
+    comment?: CommentType,
     changeUser?: (id: string) => void,
     changeDisplay?: (display: string) => void,
     changePosition?: (top: string, left: string) => void,
@@ -42,12 +44,12 @@ class Profile extends Component<Props> {
     
     render() {
         const myId: string = "haechilim";
-        const { id, idOnly, additionalInfo } = this.props;
+        const { id, idOnly, additionalInfo, comment } = this.props;
         const isMyId: boolean = id === myId;
 
         return (
             <div id={id} className={styles.profileContainer}>
-                {idOnly || (isMyId ? <LargeAvatar id={id}/> : 
+                {idOnly || (isMyId && comment === undefined ? <LargeAvatar id={id}/> : 
                     <Avatar
                         size={AvatarSize.SIZE_32}
                         id={id}
@@ -55,9 +57,9 @@ class Profile extends Component<Props> {
                         onMouseLeave={this.onMouseLeave}
                     />
                 )}
-                <div className={styles.info + (idOnly ? "" : (` ${styles.marginLeft}` + (isMyId ? ` ${styles.padding}` : "")))}>
+                <div className={styles.info + (idOnly ? "" : (` ${styles.marginLeft}` + (isMyId && comment === undefined ? ` ${styles.padding}` : "")))}>
                     <div 
-                        className={styles.id}
+                        className={`${styles.id} ${comment && styles.marginBottom}`}
                         onMouseOver={!isMyId ? this.onMouseOver : undefined}
                         onMouseLeave={!isMyId ? this.onMouseLeave : undefined}>
                         {id}

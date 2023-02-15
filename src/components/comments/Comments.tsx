@@ -20,7 +20,7 @@ class Comments extends Component<Props> {
             },
             {
                 id: 1,
-                userId: "sketcherysk",
+                userId: "winter.aespa",
                 content: "주무세요 어르신",
                 time: 1674093680896,
                 likes: 30,
@@ -39,7 +39,7 @@ class Comments extends Component<Props> {
         return (
             <ul className={styles.container}>
                 {comments.map((comment: CommentType, index: number) => (
-                    <li key={index}></li>
+                    <li className={styles.list} key={index}><Comment comment={comment} idOnly={false}/></li>
                 ))}
             </ul>
         );

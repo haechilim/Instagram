@@ -1,6 +1,7 @@
-import { Component, ReactNode } from "react";
-import styles from "@/styles/Comment.module.css";
-import Profile from "@/components/profile/Profile";
+import { Component, ReactNode } from "react"
+import styles from "@/styles/Comment.module.css"
+import Profile from "@/components/profile/Profile"
+import Util from "@/util"
 
 interface Props {
     comment: CommentType,
@@ -19,19 +20,29 @@ export type CommentType = {
 class Comment extends Component<Props> {
     render(): ReactNode {
         const { comment, idOnly } = this.props;
-        const { id, userId, content, time, likes, commentsCount } = comment;
+        const { userId, content } = comment;
 
         return (
             <div className={styles.commentContainer}>
-                <div className={styles.leftDiv}>
-                    <div className={styles.selfComment}>
-                        <Profile idOnly={idOnly} id={userId}/>
-                        <div className={styles.comment}>{content}</div>
+                {idOnly ? 
+                    <div className={styles.mainDiv}>
+                        <div className={styles.selfComment}>
+                            <Profile idOnly={idOnly} id={userId}/>
+                            <div className={styles.comment}>{content}</div>
+                        </div>
+                    </div>:
+                    <div className={styles.mainDiv}>
+                        <div className={styles.selfComment}>
+                            <Profile idOnly={idOnly} id={userId} comment={comment}/>
+                            <div className={styles.comment}>{content}</div>
+                        </div>
+                        <div className={styles.commentInfoContainer}>
+                            <button className={styles.button}>{Util.timeToString(comment.time)}</button>
+                            <button className={styles.button}>좋아요 {comment.likes}개</button>
+                            <button className={styles.button}>답글 달기</button>
+                        </div>
                     </div>
-                    <div>
-                        
-                    </div>
-                </div>
+                }
             </div>
         );
     }
