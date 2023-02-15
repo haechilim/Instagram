@@ -1,0 +1,34 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+    line-height: 18px;
+    font-size: 14px;
+    color: #0095f6;
+    background-color: #000;
+    border: none;
+    padding: 0px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.button:hover {
+    color: rgb(224, 241, 255);
+}
+
+.marginRight {
+    margin-right: 6px;
+}
+
+.nonClickable {
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+    line-height: 18px;
+    font-size: 14px;
+    color: #b3dbff;
+    background-color: #000;
+    border: none;
+    padding: 0px;
+    width: 30px;
+}

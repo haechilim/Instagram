@@ -7,7 +7,6 @@
 
 .textarea {
     width: 100%;
-    height: auto;
     max-height: 80px;
     background-color: #000;
     color: rgb(250, 250, 250);
@@ -23,4 +22,8 @@
 
 .textarea::placeholder {
     color: rgb(168, 168, 168);
+}
+
+.icon {
+    padding: 8px 16px 8px 0px;
 }

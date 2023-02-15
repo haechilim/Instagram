@@ -3,7 +3,7 @@ import { changePopupDisplay, changePopupPost, PostPopupState } from "@/modules/p
 import { connect } from "react-redux"
 import Comment, { CommentType } from "@/components/comments/Comment"
 import MoreComments from "@/components/comments/MoreComments"
-import WriteComment from "@/components/comments/WriteComment"
+import WriteComment, { WriteCommentStyles } from "@/components/comments/WriteComment"
 import OptionIcon from "@/components/icons/OptionIcon"
 import ActionPanel from "@/components/panel/ActionPanel"
 import Profile from "@/components/profile/Profile"
@@ -75,7 +75,7 @@ class Post extends Component<Props> {
                                 changePopupPost={() => changePopupPost !== undefined && changePopupPost(targetPost)}
                                 changePopupDisplay={() => changePopupDisplay !== undefined && changePopupDisplay("flex")}
                             />
-                            <WriteComment/>
+                            <WriteComment style={WriteCommentStyles.ITEM}/>
                         </div>
                     </li>
                 );
@@ -98,7 +98,7 @@ class Post extends Component<Props> {
                                 <ActionPanel likes={likes} time={time}/>
                             </ReactionItemContainer>
                             <ReactionItemContainer>
-                                <WriteComment/>
+                                <WriteComment style={WriteCommentStyles.POPUP}/>
                             </ReactionItemContainer>
                         </div>
                     </div>
