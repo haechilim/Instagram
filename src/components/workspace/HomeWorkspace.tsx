@@ -10,7 +10,6 @@ class HomeWorkspace extends Component {
             <div className={styles.homeWorkspaceContainer}>
                 <MainPosts/>
                 <UserRecommends/>
-                <Detail/>
             </div>
         );
     }

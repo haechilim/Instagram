@@ -4,7 +4,7 @@ import HamburgerMenu from "@/components/navigations/HamburgerMenu"
 import MainNavigationItem from "@/components/navigations/MainNavigationItem"
 import styles from "@/styles/MainNavigation.module.css"
 
-export enum MainNavigationItemName {
+export enum PageName {
     HOME,
     SEARCH,
     EXPLORE,
@@ -17,16 +17,16 @@ export enum MainNavigationItemName {
 }
 
 interface Props {
-    selectedIndex: MainNavigationItemName
+    page: PageName
 }
 
 interface State {
-    selectedIndex: MainNavigationItemName,
+    page: PageName,
     selectedHamburger: boolean
 }
 
 interface MainNavigationItemObject {
-    name: MainNavigationItemName,
+    name: PageName,
     text: string,
     path: string,
     selected: boolean,
@@ -35,20 +35,20 @@ interface MainNavigationItemObject {
 
 class MainNevigation extends Component<Props, State> {
     state: State = {
-        selectedIndex: this.props.selectedIndex,
+        page: this.props.page,
         selectedHamburger: false
     };
 
     setInitState = (): void => {
         this.setState({
-            selectedIndex: MainNavigationItemName.HOME,
+            page: PageName.HOME,
             selectedHamburger: false
         })
     }
 
     render(): ReactNode {
-        const { selectedIndex, selectedHamburger } = this.state;
-        const { HOME, SEARCH, EXPLORE, REELS, MESSAGE, ALARM, CREATE, PROFILE } = MainNavigationItemName;
+        const { page: selectedIndex, selectedHamburger } = this.state;
+        const { HOME, SEARCH, EXPLORE, REELS, MESSAGE, ALARM, CREATE, PROFILE } = PageName;
         const MainNavigationItems: MainNavigationItemObject[] = [
             {
                 name: HOME,
@@ -64,7 +64,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === SEARCH,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: SEARCH,
+                        page: SEARCH,
                         selectedHamburger: false
                     })
                 }
@@ -76,7 +76,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === EXPLORE,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: EXPLORE,
+                        page: EXPLORE,
                         selectedHamburger: false
                     })
                 }
@@ -88,7 +88,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === REELS,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: REELS,
+                        page: REELS,
                         selectedHamburger: false
                     })
                 }
@@ -100,7 +100,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === MESSAGE,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: MESSAGE,
+                        page: MESSAGE,
                         selectedHamburger: false
                     })
                 }
@@ -112,7 +112,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === ALARM,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: ALARM,
+                        page: ALARM,
                         selectedHamburger: false
                     })
                 }
@@ -124,7 +124,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === CREATE,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: CREATE,
+                        page: CREATE,
                         selectedHamburger: false
                     })
                 }
@@ -136,7 +136,7 @@ class MainNevigation extends Component<Props, State> {
                 selected: selectedIndex === PROFILE,
                 onClick: (): void => {
                     this.setState({
-                        selectedIndex: PROFILE,
+                        page: PROFILE,
                         selectedHamburger: false
                     })
                 }

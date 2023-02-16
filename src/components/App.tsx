@@ -1,31 +1,32 @@
-import { Component, ReactNode } from "react";
-import MainNevigation from "@/components/navigations/MainNavigation";
-import styles from "@/styles/App.module.css";
-import Progress from "@/components/Progress";
-import FullScreenPopup from "@/components/popup/FullScreenPopup";
-import Post, { PostDirection } from "@/components/posts/Post";
+import { Component, ReactNode } from "react"
+import Progress from "@/components/Progress"
+import MainNevigation, { PageName } from "@/components/navigations/MainNavigation"
+import Post, { PostDirection } from "@/components/posts/Post"
+import Workspace from "@/components/workspace/Workspace"
+import FullScreenPopup from "@/components/popup/FullScreenPopup"
+import Detail from "@/components/popup/Detail"
+import styles from "@/styles/App.module.css"
 
 interface Props {
-    selectedIndex: number,
-    children?: JSX.Element
+    page: PageName,
+    children: JSX.Element
 };
 
 class App extends Component<Props> {
     render(): ReactNode {
-        const { selectedIndex, children } = this.props;
+        const { page, children } = this.props;
 
         return (
-            <div className={styles.container}>
+            <div className={styles.appContainer}>
                 <Progress/>
-                <div className={styles.navigationContainer}>
-                    <MainNevigation selectedIndex={selectedIndex}/>
-                    <div className={styles.workspaceContainer}>
-                        {children}
-                    </div>
+                <div className={styles.mainContainer}>
+                    <MainNevigation page={page}/>
+                    <Workspace>{children}</Workspace>
                 </div>
                 <FullScreenPopup>
                     <Post direction={PostDirection.ROW}/>
                 </FullScreenPopup>
+                <Detail/>
             </div>
         );
     }

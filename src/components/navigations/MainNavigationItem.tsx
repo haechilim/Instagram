@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react"
-import { MainNavigationItemName } from "@/components/navigations/MainNavigation"
+import { PageName } from "@/components/navigations/MainNavigation"
 import Link from "next/link"
 import AlarmIcon from "@/components/icons/AlarmIcon"
 import CreateIcon from "@/components/icons/CreateIcon"
@@ -13,7 +13,7 @@ import styles from "@/styles/MainNavigationItem.module.css"
 import SmallAvatar from "../profile/SmallAvatar"
 
 interface Props {
-    name: MainNavigationItemName,
+    name: PageName,
     text: string,
     path: string,
     selected: boolean,

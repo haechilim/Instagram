@@ -1,0 +1,9 @@
+.workspaceContainer {
+    overflow-y: scroll;
+    scrollbar-width: initial;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+  }

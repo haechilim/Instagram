@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import { MainNavigationItemName } from "./MainNavigation";
+import { PageName } from "./MainNavigation";
 import MainMenuItem from "./MainNavigationItem";
 
 interface Props {
@@ -15,7 +15,7 @@ class HamburgerMenu extends Component<Props> {
             <div className="hamburgerMenuContainer">
                 <MainMenuItem
                     key="hamburger"
-                    name={MainNavigationItemName.HAMBURGER}
+                    name={PageName.HAMBURGER}
                     text="더 보기"
                     path=""
                     selected={selected}

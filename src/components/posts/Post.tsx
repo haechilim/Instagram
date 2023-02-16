@@ -12,6 +12,7 @@ import Contents from "@/components/posts/Contents"
 import ReactionItemContainer from "@/components/container/ReactionItemContainer"
 import Time from "@/components/util/Time"
 import Comments from "@/components/comments/Comments"
+import Detail from "../popup/Detail"
 
 export enum PostDirection {
     COLUMN,
