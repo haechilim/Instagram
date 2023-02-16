@@ -1,6 +1,6 @@
 import { Component, ReactNode } from "react"
 import Progress from "@/components/Progress"
-import MainNevigation, { PageName } from "@/components/navigations/MainNavigation"
+import AppNavigation, { PageName } from "@/components/navigations/AppNavigation"
 import Post, { PostDirection } from "@/components/posts/Post"
 import Workspace from "@/components/workspace/Workspace"
 import FullScreenPopup from "@/components/popup/FullScreenPopup"
@@ -20,7 +20,7 @@ class App extends Component<Props> {
             <div className={styles.appContainer}>
                 <Progress/>
                 <div className={styles.mainContainer}>
-                    <MainNevigation page={page}/>
+                    <AppNavigation currentPage={page}/>
                     <Workspace>{children}</Workspace>
                 </div>
                 <FullScreenPopup>

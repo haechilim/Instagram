@@ -25,3 +25,7 @@ code {
 #__next {
   height: 100%;
 }
+
+#mainNavigationButton:hover .icon {
+  transform: scale(105%);
+}

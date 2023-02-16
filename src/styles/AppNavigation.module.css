@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 220px;
+    height: 100%;
+    background-color: black;
+    border-right: 1px solid rgb(38, 38, 38);
+    padding: 8px 12px 0px 12px;
+}
+
+.hamburgerMenuContainer {
+    margin-bottom: 28px;
+}

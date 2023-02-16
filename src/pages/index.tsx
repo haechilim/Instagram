@@ -2,7 +2,7 @@ import { Inter } from '@next/font/google'
 import Head from 'next/head'
 import { Provider } from 'react-redux'
 import App from '@/components/App'
-import { PageName } from '@/components/navigations/MainNavigation'
+import { PageName } from '@/components/navigations/AppNavigation'
 import HomeWorkspace from '@/components/workspace/HomeWorkspace'
 import store from '@/modules'
 

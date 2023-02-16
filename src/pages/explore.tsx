@@ -1,7 +1,7 @@
 import { Inter } from '@next/font/google'
 import Head from 'next/head'
 import App from '@/components/App'
-import { PageName } from '@/components/navigations/MainNavigation'
+import { PageName } from '@/components/navigations/AppNavigation'
 import ExploreWorkspace from '@/components/workspace/ExploreWorkspace'
 
 const inter = Inter({ subsets: ['latin'] })

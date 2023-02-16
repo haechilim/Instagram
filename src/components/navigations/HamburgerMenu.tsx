@@ -1,13 +1,8 @@
 import { Component, ReactNode } from "react";
-import { PageName } from "./MainNavigation";
-import MainMenuItem from "./MainNavigationItem";
+import { PageName } from "./AppNavigation";
+import MainMenuItem from "./MainNavigationButton";
 
-interface Props {
-    selected: boolean,
-    onClick: () => void
-}
-
-class HamburgerMenu extends Component<Props> {
+class HamburgerMenu extends Component {
     render(): ReactNode {
         const { selected, onClick } = this.props;
 

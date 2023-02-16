@@ -1,5 +1,4 @@
 import { Component, ReactNode } from "react"
-import { PageName } from "@/components/navigations/MainNavigation"
 import Link from "next/link"
 import AlarmIcon from "@/components/icons/AlarmIcon"
 import CreateIcon from "@/components/icons/CreateIcon"
@@ -8,21 +7,18 @@ import HomeIcon from "@/components/icons/HomeIcon"
 import MessageIcon from "@/components/icons/MessageIcon"
 import ReelsIcon from "@/components/icons/ReelsIcon"
 import SearchIcon from "@/components/icons/SearchIcon"
+import { MainNavigationItem } from "@/components/navigations/MainNavigation"
 import HamburgerMenuIcon from "@/components/icons/HamburgerIcon"
-import styles from "@/styles/MainNavigationItem.module.css"
-import SmallAvatar from "../profile/SmallAvatar"
+import SmallAvatar from "@/components/profile/SmallAvatar"
+import styles from "@/styles/MainNavigationButton.module.css"
 
 interface Props {
-    name: PageName,
-    text: string,
-    path: string,
-    selected: boolean,
-    onClick: () => void
+    item: MainNavigationItem
 }
 
-class MainNavigationItem extends Component<Props> {
+class MainNavigationButton extends Component<Props> {
     render(): ReactNode {
-        const { name, text, path, selected, onClick } = this.props;
+        const { name, text, path, selected, onClick } = this.props.item || {};
         const icons: JSX.Element[] = [
             <HomeIcon key="homeIcon" selected={selected}/>,
             <SearchIcon key="searchIcon" selected={selected}/>,
@@ -34,27 +30,23 @@ class MainNavigationItem extends Component<Props> {
             <SmallAvatar key="profile" id="haechilim" selected={selected}/>,
             <HamburgerMenuIcon key="hamburger" selected={selected}/>
         ];
-
-        const item: JSX.Element = 
-        <>
-            {icons[name]}
-            <div className={styles.text + (selected ? ` ${styles.bold}` : "")}>{text}</div>
-        </>;
+        const button: JSX.Element = (
+            <>
+                {icons[name]}
+                <div className={`${styles.text} ${selected && styles.bold}`}>{text}</div>
+            </>
+        );
         
 
         return (
             <>
-                { path !== "" ? 
-                    <Link href={`${path}`} className={styles.mainMenuItem} onClick={onClick}>
-                        {item}
-                    </Link> :
-                    <div className={styles.mainMenuItem} onClick={onClick}> 
-                        {item}
-                    </div>
-                } 
+                {path !== undefined ?
+                    <Link id="mainNavigationButton" href={path} className={styles.button} onClick={onClick}>{button}</Link> :
+                    <div id="mainNavigationButton" className={styles.button} onClick={onClick}>{button}</div>
+                }
             </>
         );
     }
 }
 
-export default MainNavigationItem;
+export default MainNavigationButton;

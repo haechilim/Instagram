@@ -1,4 +1,4 @@
-.mainMenuItem {
+.button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,16 +10,20 @@
     cursor: pointer;
 }
 
-.mainMenuItem:hover {
+.button:hover {
     background-color: #121212;
     border-radius: 100px;
+}
+
+.button:hover .icon {
+    transform: scale(105%);
 }
 
 .mini {
     border: 2px solid rgb(0, 0, 0);
 }
 
-.mainMenuItem:hover .mini {
+.button:hover .mini {
     transform: scale(105%);
 }
 

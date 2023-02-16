@@ -1,10 +1,9 @@
 import { Component, ReactNode } from "react"
-import Logo from "@/components/icons/Logo"
-import HamburgerMenu from "@/components/navigations/HamburgerMenu"
-import MainNavigationItem from "@/components/navigations/MainNavigationItem"
+import { PageName } from "@/components/navigations/AppNavigation"
+import MainNavigationButton from "@/components/navigations/MainNavigationButton"
 import styles from "@/styles/MainNavigation.module.css"
 
-export enum PageName {
+enum AppNavigationButtonName {
     HOME,
     SEARCH,
     EXPLORE,
@@ -16,155 +15,97 @@ export enum PageName {
     HAMBURGER
 }
 
-interface Props {
-    page: PageName
-}
-
-interface State {
-    page: PageName,
-    selectedHamburger: boolean
-}
-
-interface MainNavigationItemObject {
-    name: PageName,
+export interface MainNavigationItem {
+    name: AppNavigationButtonName,
     text: string,
-    path: string,
+    path?: string,
     selected: boolean,
     onClick: () => void
 }
 
-class MainNevigation extends Component<Props, State> {
-    state: State = {
-        page: this.props.page,
-        selectedHamburger: false
-    };
+interface Props {
+    currentPage: PageName
+}
 
-    setInitState = (): void => {
-        this.setState({
-            page: PageName.HOME,
-            selectedHamburger: false
-        })
-    }
+interface State {
+    currentButton: AppNavigationButtonName | PageName,
+}
+
+class MainNavigation extends Component<Props, State> {
+    initState: State = { currentButton: this.props.currentPage };
+    state: State = this.initState;
+    setInitState = (): void => this.setState(this.initState)
 
     render(): ReactNode {
-        const { page: selectedIndex, selectedHamburger } = this.state;
-        const { HOME, SEARCH, EXPLORE, REELS, MESSAGE, ALARM, CREATE, PROFILE } = PageName;
-        const MainNavigationItems: MainNavigationItemObject[] = [
+        const { currentButton } = this.state;
+        const { HOME, SEARCH, EXPLORE, REELS, MESSAGE, ALARM, CREATE, PROFILE } = AppNavigationButtonName;
+        const mainNavigationItems: MainNavigationItem[] = [
             {
                 name: HOME,
                 text: "홈",
                 path: "/",
-                selected: selectedIndex === HOME,
+                selected: currentButton === HOME,
                 onClick: this.setInitState
             },
             {
                 name: SEARCH,
                 text: "검색",
-                path: "",
-                selected: selectedIndex === SEARCH,
-                onClick: (): void => {
-                    this.setState({
-                        page: SEARCH,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === SEARCH,
+                onClick: (): void => this.setState({ currentButton: SEARCH })
             },
             {
                 name: EXPLORE,
                 text: "탐색 탭",
                 path: "/explore",
-                selected: selectedIndex === EXPLORE,
-                onClick: (): void => {
-                    this.setState({
-                        page: EXPLORE,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === EXPLORE,
+                onClick: (): void => this.setState({ currentButton: EXPLORE })
             },
             {
                 name: REELS,
                 text: "릴스",
                 path: "/reels",
-                selected: selectedIndex === REELS,
-                onClick: (): void => {
-                    this.setState({
-                        page: REELS,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === REELS,
+                onClick: (): void => this.setState({ currentButton: REELS })
             },
             {
                 name: MESSAGE,
                 text: "메시지",
                 path: "/message",
-                selected: selectedIndex === MESSAGE,
-                onClick: (): void => {
-                    this.setState({
-                        page: MESSAGE,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === MESSAGE,
+                onClick: (): void => this.setState({ currentButton: MESSAGE })
             },
             {
                 name: ALARM,
                 text: "알림",
-                path: "",
-                selected: selectedIndex === ALARM,
-                onClick: (): void => {
-                    this.setState({
-                        page: ALARM,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === ALARM,
+                onClick: (): void => this.setState({ currentButton: ALARM })
             },
             {
                 name: CREATE,
                 text: "만들기",
-                path: "",
-                selected: selectedIndex === CREATE,
-                onClick: (): void => {
-                    this.setState({
-                        page: CREATE,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === CREATE,
+                onClick: (): void => this.setState({ currentButton: CREATE })
             },
             {
                 name: PROFILE,
                 text: "프로필",
                 path: "/haechilim",
-                selected: selectedIndex === PROFILE,
-                onClick: (): void => {
-                    this.setState({
-                        page: PROFILE,
-                        selectedHamburger: false
-                    })
-                }
+                selected: currentButton === PROFILE,
+                onClick: (): void => this.setState({ currentButton: PROFILE })
             },
         ];
 
         return (
-            <div className={styles.mainMenuContainer}>
-                <Logo onClick={this.setInitState}/>
-                <div className={styles.menuList}>
-                    {MainNavigationItems.map((item: MainNavigationItemObject, index: number) => (
-                        <MainNavigationItem
-                            key={"MainNavigationItem" + index}
-                            name={item.name}
-                            text={item.text}
-                            path={item.path}
-                            selected={item.selected}
-                            onClick={item.onClick}
-                        />
-                    ))}
-                </div>
-                <HamburgerMenu
-                    selected={selectedHamburger}
-                    onClick={(): void => this.setState({ selectedHamburger: true })}
-                />
+            <div className={styles.container}>
+                {mainNavigationItems.map((item: MainNavigationItem, index: number): JSX.Element => (
+                    <MainNavigationButton
+                        key={"MainNavigationButton" + index}
+                        item={item}
+                    />
+                ))}
             </div>
         );
     }
 }
 
-export default MainNevigation;
+export default MainNavigation;

@@ -1,4 +1,4 @@
-.logoContainer {
+.container {
     display: flex;
     justify-content: flex-start;
     padding: 25px 12px 16px 12px;
@@ -6,7 +6,7 @@
     height: 32px;
 }
 
-.logoContainer .logo {
+.logo {
     display: flex;
     align-items: flex-end;
     width: 196px;
